@@ -1,3 +1,10 @@
 export const Item = ({ item }) => {
-  return <li>{item.description}</li>;
+  return (
+    <li key={item.id}>
+      <span style={item.packed ? { textDecoration: "line-through" } : {}}>
+        {item.quantity} {item.description}
+      </span>
+      <button>❌</button>
+    </li>
+  );
 };
