@@ -1,11 +1,11 @@
 import { Item } from "./Item.jsx";
 
-export const PackingList = ([initialItems]) => {
+export const PackingList = ({ items }) => {
   return (
     <div className="list">
       <ul>
-        {initialItems.map((item) => (
-          <Item item={item} />
+        {items.map((item) => (
+          <Item item={item} key={item.id} />
         ))}
       </ul>
     </div>
