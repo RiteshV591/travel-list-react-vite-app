@@ -14,12 +14,33 @@ export const App = () => {
     setItems((items) => [...items, item]);
   };
 
+  const handleDeleteItems = (id) => {
+    setItems((items) => items.filter((item) => item.id !== id));
+  };
+
+  const handleToggleItems = (id) => {
+    setItems((items) =>
+      items.map((item) =>
+        item.id === id ? { ...item, packed: !item.packed } : item
+      )
+    );
+  };
+
+  const handleClearList = () => {
+    if (window.confirm("Are you sure you want to clear list?")) setItems([]);
+  };
+
   return (
     <div className="app">
       <Logo />
       <Form onAddItems={handleAddItems} />
-      <PackingList items={items} />
-      <Stats />
+      <PackingList
+        items={items}
+        onDeleteItems={handleDeleteItems}
+        onToggleItem={handleToggleItems}
+        onClearList={handleClearList}
+      />
+      <Stats items={items} />
     </div>
   );
 };
